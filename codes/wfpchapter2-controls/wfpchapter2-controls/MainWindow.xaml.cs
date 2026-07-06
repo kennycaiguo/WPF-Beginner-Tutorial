@@ -16,11 +16,13 @@ using System.Windows.Shapes;
 
 namespace wfpchapter2_controls
 {
+    
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<string> toppings = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
@@ -55,6 +57,129 @@ namespace wfpchapter2_controls
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("按钮被点击了");
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.Background = Brushes.AliceBlue;
+            btn.FontWeight = FontWeights.Bold;
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.Background = Brushes.White;
+            btn.FontWeight = FontWeights.Normal;
+        }
+
+        //private void cbCheese_CheckedChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if (cbCheese.IsChecked == true) {
+        //        toppings.Add(tb_cheese.Text);
+               
+        //    }else if(cbCheese.IsChecked == false)
+        //    {
+        //        toppings.Remove(tb_cheese.Text);
+        //    }
+        //    lbl_toppings.Content = string.Join(",", toppings);
+        //}
+
+       
+
+        //private void cbTuna_CheckedChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if(cbTuna.IsChecked == true)
+        //      toppings.Add(tb_tuna.Text);
+        //    else if(cbTuna.IsChecked == false)
+        //      toppings.Remove(tb_tuna.Text);
+        //    lbl_toppings.Content = string.Join(",", toppings);
+        //}
+
+
+        //private void cbHam_CheckedChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if (cbHam.IsChecked == true)
+        //        toppings.Add(tb_ham.Text);
+        //    else if (cbHam.IsChecked == false)
+        //        toppings.Remove(tb_ham.Text);
+        //    lbl_toppings.Content = string.Join(",", toppings);
+        //}
+
+     
+        //private void cbPepp_CheckedChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if(cbPepp.IsChecked == true)
+        //        toppings.Add(tb_pepp.Text);
+        //    else if (cbPepp.IsChecked == false)
+        //        toppings.Remove(tb_pepp.Text);
+        //    lbl_toppings.Content = string.Join(",", toppings);
+        //}
+
+        private void cbToppingsCheckChanged(object sender, RoutedEventArgs e) 
+        {
+            cbParent.IsChecked = null; //既不是true也不是false的状态是一个黑色方块
+            if (cbCheese.IsChecked == true)
+            {
+                if(!toppings.Contains(tb_cheese.Text))
+                    toppings.Add(tb_cheese.Text);
+
+            }
+            else if (cbCheese.IsChecked == false)
+            {
+                toppings.Remove(tb_cheese.Text);
+            }
+
+            if (cbTuna.IsChecked == true)
+            {
+                if (!toppings.Contains(tb_tuna.Text))
+                    toppings.Add(tb_tuna.Text);
+            }  
+            else if (cbTuna.IsChecked == false)
+                toppings.Remove(tb_tuna.Text);
+
+            if (cbHam.IsChecked == true)
+            {
+               if (!toppings.Contains(tb_ham.Text))
+                    toppings.Add(tb_ham.Text);
+            }    
+            else if (cbHam.IsChecked == false)
+                toppings.Remove(tb_ham.Text);
+            
+            if (cbPepp.IsChecked == true)
+            {
+                if (!toppings.Contains(tb_pepp.Text))
+                    toppings.Add(tb_pepp.Text);
+            }
+                
+            else if (cbPepp.IsChecked == false)
+                toppings.Remove(tb_pepp.Text);
+            lbl_toppings.Content = string.Join(",", toppings);
+            //如果所有是自复选框都被选中，父亲复选框也需要变为选中状态
+            if(cbCheese.IsChecked == true && cbHam.IsChecked==true && cbTuna.IsChecked==true && cbPepp.IsChecked==true)
+            {
+                cbParent.IsChecked = true;
+            }
+            //如果所有是自复选框都被取消选中，父亲复选框也需要变为取消选中状态
+            if (cbCheese.IsChecked == false && cbHam.IsChecked == false && cbTuna.IsChecked == false && cbPepp.IsChecked == false)
+            {
+                cbParent.IsChecked = false;
+            }
+        }
+        private void cbParentChackStateChanged(object sender, RoutedEventArgs e) 
+        {
+            //获取父亲复选框的状态，然后赋值给所有自复选框,这样子，只要勾选了父亲复选框。所有自复选框都会勾选上，
+            //只要取消勾选父亲复选框，所有的自复选框都会取消选中
+            bool newVal = (cbParent.IsChecked == true);
+            cbCheese.IsChecked = newVal;
+            cbHam.IsChecked = newVal;
+            cbTuna.IsChecked = newVal;
+            cbPepp.IsChecked = newVal;
         }
     }
     

@@ -94,7 +94,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\cheese-small.png" />
+    <Resource Include="Images\ham-sm.png" />
+    <Resource Include="Images\ppep-sm.png" />
+    <Resource Include="Images\tuna-sm.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\1.jpg" />
     <Resource Include="Images\2.png" />

@@ -18,7 +18,7 @@
             如<Span Foreground="Aquamarine" Background="White">“P图”，“正在 PS”和“PS 比赛”</Span>，尽管 Adobe 不鼓励这样使用。它可以编辑和合成多个图层中的位图，支持图层遮罩、图像合成且包含 RGB、CMYK、CIELAB、专色通道和双色调等多种颜色模型。该软件使用自己的 .PSD 和 .PSB 文件格式来支持上述功能。不过除位图以外，它编辑或渲染文本、矢量图形（尤其是剪辑路径）、3D 图形和视频的能力有限。它的功能可以通过 Photoshop 插件、独立于该软件开发和分发的程序来扩展，这些程序在其内部运行以增强或是提供全新的功能。
         </TextBlock>-->
         <!--Label-->
-        <Label Width="300" Height="120">
+        <!--<Label Width="300" Height="120">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                     <Image Source="/Images/1.jpg" Width="60" Height="50" />
@@ -29,6 +29,61 @@
                 <TextBox>我是标签内容里面的文本框</TextBox>
             </StackPanel>
            
-        </Label>
+        </Label>-->
+        <!--TextBox-->
+        <!--<TextBox 
+                 FontSize="18"
+                 Margin="5" AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 Language="en-US"
+                 SpellCheck.IsEnabled="True"
+                 />-->
+        <!--Button-->
+        <!--<Button Width="200" Height="80" Click="Button_Click"
+                MouseEnter="Button_MouseEnter"
+                MouseLeave="Button_MouseLeave"
+                ToolTip="Hello Button ho ho ho...">
+               Hello
+            --><!--<StackPanel>
+                <Image Source="/Images/1.jpg" Width="200" Height="50"  Stretch="Fill"/>
+                <Image Source="/Images/2.png" Width="200" Height="50" Stretch="UniformToFill" />
+                <Image Source="/Images/3.jpg" Width="200" Height="50" Stretch="Fill"/>
+            </StackPanel>--><!--
+        </Button>-->
+        <!--CheckBox-->
+        <StackPanel Orientation="Horizontal">
+            <Label>Pizza Toppings:</Label>
+            <Label x:Name="lbl_toppings"></Label>
+        </StackPanel>
+        <!--Parent CheckBox-->
+        <CheckBox x:Name="cbParent" IsThreeState="True"
+                  Checked="cbParentChackStateChanged"
+                  Unchecked="cbParentChackStateChanged">All</CheckBox>
+        <StackPanel Margin="15 5">
+            <CheckBox x:Name="cbCheese" Checked="cbToppingsCheckChanged" Unchecked="cbToppingsCheckChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/cheese-small.png" Width="16" />
+                    <TextBlock x:Name="tb_cheese"> Cheese</TextBlock>
+                </StackPanel>
+            </CheckBox>
+            <CheckBox x:Name="cbTuna" Checked="cbToppingsCheckChanged" Unchecked="cbToppingsCheckChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/tuna-sm.png" Width="16" />
+                    <TextBlock x:Name="tb_tuna"> Tuna</TextBlock>
+                </StackPanel>
+            </CheckBox>
+            <CheckBox x:Name="cbHam" Checked="cbToppingsCheckChanged" Unchecked="cbToppingsCheckChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/tuna-sm.png" Width="16" />
+                    <TextBlock x:Name="tb_ham"> Ham</TextBlock>
+                </StackPanel>
+            </CheckBox>
+            <CheckBox x:Name="cbPepp" Checked="cbToppingsCheckChanged" Unchecked="cbToppingsCheckChanged">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/tuna-sm.png" Width="16" />
+                    <TextBlock x:Name="tb_pepp"> Pepperoni</TextBlock>
+                </StackPanel>
+            </CheckBox>
+        </StackPanel>
     </StackPanel>
 </Window>
