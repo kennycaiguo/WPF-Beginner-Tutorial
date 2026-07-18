@@ -51,11 +51,11 @@
             </StackPanel>--><!--
         </Button>-->
         <!--CheckBox-->
-        <StackPanel Orientation="Horizontal">
+        <!--<StackPanel Orientation="Horizontal">
             <Label>Pizza Toppings:</Label>
             <Label x:Name="lbl_toppings"></Label>
         </StackPanel>
-        <!--Parent CheckBox-->
+        --><!--Parent CheckBox--><!--
         <CheckBox x:Name="cbParent" IsThreeState="True"
                   Checked="cbParentChackStateChanged"
                   Unchecked="cbParentChackStateChanged">All</CheckBox>
@@ -84,6 +84,76 @@
                     <TextBlock x:Name="tb_pepp"> Pepperoni</TextBlock>
                 </StackPanel>
             </CheckBox>
+        </StackPanel>-->
+    
+    <!--密码框-->
+        <!--<StackPanel Margin="5">
+            <Label>UserName:</Label>
+            <TextBox x:Name="userName" />
+            <Label>Password:</Label>
+            <PasswordBox x:Name="passBox"
+                         PasswordChar="*"
+                         MaxLength="12"
+                         />
+            <Button x:Name="btnLogin" Click="btnLogin_Click">Login</Button>
+        </StackPanel>-->
+        <!--图像-->
+        <!--<Image Source="/Images/1.jpg" 
+               MouseUp="Image_MouseUp"
+               x:Name="ImgBox"/>-->
+        <!--滑块控件-->
+        
+        <!--<Slider VerticalAlignment="Center" Margin="20" Maximum="100" TickPlacement="BottomRight"
+               x:Name="my_Slider" 
+               TickFrequency="10"  IsSnapToTickEnabled="True" Value="30">
+            
+        </Slider>
+        <TextBox x:Name="txtBox"  Margin="20"
+                 Text="{Binding ElementName=my_Slider, Path=Value}"
+                 FontSize="{Binding ElementName=my_Slider,Path=Value,UpdateSourceTrigger=PropertyChanged}">
+            
+        </TextBox>-->
+        <!--日历控件-->
+        <!--<StackPanel Orientation="Horizontal">
+            <Label Content="当前日期:"></Label>
+            <TextBlock x:Name="DateTxt" Margin="10 5 0 0"/>
         </StackPanel>
+        
+        <Viewbox Stretch="Uniform">
+            <Calendar
+                x:Name="MyCalendar"
+                SelectedDatesChanged="MyCalendar_SelectedDatesChanged"></Calendar>
+        </Viewbox>-->
+        
+        <!--日期选择器-->
+        
+        <!--<DatePicker
+            SelectedDate="07/15/2026"
+            SelectedDateChanged="DatePicker_SelectedDateChanged">
+            <DatePicker.BlackoutDates>
+                <CalendarDateRange Start="07/02/2026" End="07/09/2026"></CalendarDateRange>
+            </DatePicker.BlackoutDates>
+        </DatePicker>-->
+        
+        <!--展开器expander-->
+        <Expander Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
+            <Expander.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/tip.png" Width="20" />
+                    <TextBlock Text="点击展开，再次点击折叠" VerticalAlignment="Center" />
+                </StackPanel>
+            </Expander.Header>
+            <StackPanel>
+                <Viewbox>
+                     <Image Source="/Images/1.jpg" Width="200"  Height="50" Stretch="Fill"/>
+                </Viewbox>
+                <DatePicker></DatePicker>
+                <TextBlock>
+                    Hello Everyone ,welcome to my app!!!
+                </TextBlock>
+                <Button Content="Click Me" />
+            </StackPanel>
+        </Expander>
+        
     </StackPanel>
 </Window>

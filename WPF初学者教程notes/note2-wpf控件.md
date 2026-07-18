@@ -1164,29 +1164,316 @@ namespace wfpchapter2_controls
 
 ![image-20260705182248483](./note2-wpf控件.assets/image-20260705182248483.png)
 
-# 8.密码框
+# 8.密码框PasswordBox
+
+## 还是上面的Controls项目，我们把CheckBox的代码注释了（后台代码也注释了，否则报错），然后添加一个StackPanel两个标签一个文本框一个密码框
+
+![image-20260705184150072](./note2-wpf控件.assets/image-20260705184150072.png)
+
+## 密码框有一个PasswordChar属性，你可以把它设置为你信号的字符，比如*
+
+![image-20260705184313747](./note2-wpf控件.assets/image-20260705184313747.png)
+
+## 注意，这个PasswordBox没有Content属性，没有Text属性，也没有Value属性，他的文本是通过Password属性来获取的，我们可以添加一个登录按钮，然后在按钮的点击事件里面获取密码框的密码属性，然后继续判断，这样子一个超级简单的登录小案例就做好了
+
+![image-20260705190248420](./note2-wpf控件.assets/image-20260705190248420.png)
+
+## 后台代码是这样子的
+
+![image-20260705193340851](./note2-wpf控件.assets/image-20260705193340851.png)
+
+### 效果
+
+![image-20260705193435966](./note2-wpf控件.assets/image-20260705193435966.png)
+
+
+
+![image-20260705193504454](./note2-wpf控件.assets/image-20260705193504454.png)
+
+## 可以使用MaxLength属性设置密码的最大长度，但是它没有最小长度限制
+
+![image-20260705193744338](./note2-wpf控件.assets/image-20260705193744338.png)
+
+## 注意，密码框没有依赖属性，无法进行绑定也就是无法使用Binding，这是处于密码安全性的考量。
 
 
 
 # 9.图像
 
+## 还是controls项目，把密码框相关的代码注释了，然后我们来学习图像
+
+#### 把一个图片作为资源的正确语法是如图
+
+![image-20260705194755617](./note2-wpf控件.assets/image-20260705194755617.png)
+
+## 我们创建一个图片控件，给他设置一个源图片
+
+![image-20260705195445366](./note2-wpf控件.assets/image-20260705195445366.png)
+
+## 我们给图片添加一个MouseUp事件处理函数（图片是没有Click事件的，MouseUp就相当于Click事件），并且，我们需要给Image元素起一个名字：ImgBox。然后我们进入后台文件，尝试用cs代码来覆盖这一幅图片
+
+![image-20260705201458427](./note2-wpf控件.assets/image-20260705201458427.png)
+
+![image-20260705202523936](./note2-wpf控件.assets/image-20260705202523936.png)
+
+### 效果
+
+![image-20260705202552414](./note2-wpf控件.assets/image-20260705202552414.png)
+
+### 点击图片就会修改Image的source属性，会变为另外一张图片
+
+![image-20260705202647396](./note2-wpf控件.assets/image-20260705202647396.png)
+
+### 注意，xaml中图片的Source属性可以简写
+
+![image-20260705202802500](./note2-wpf控件.assets/image-20260705202802500.png)
+
 
 
 # 10.滑块-数据绑定和触发器
+
+## 把图片控件的代码以及后台代码注释了，然后创建一个滑块控件
+
+![image-20260712113900128](./note2-wpf控件.assets/image-20260712113900128.png)
+
+## 此时运行程序，即使你设置了最大值，在界面上面都看不出来
+
+![image-20260712113958089](./note2-wpf控件.assets/image-20260712113958089.png)
+
+
+
+## 我们需要给滑块添加刻度，你可以指定宽度的位置和刻度的频率
+
+![image-20260714092236185](./note2-wpf控件.assets/image-20260714092236185.png)
+
+## 你还可以指定是否对齐到宽度，需要设置IsSnapToTickEnabled属性
+
+![image-20260714092436664](./note2-wpf控件.assets/image-20260714092436664.png)
+
+### 效果
+
+![image-20260714092504246](./note2-wpf控件.assets/image-20260714092504246.png)
+
+
+
+### 注意，设置了这个属性后，你无法平滑的移动滑块，只能够在宽度直接跳转
+
+## 滑块还有一个重要属性value，你可以通过他来设置滑块的位置
+
+![image-20260714092841946](./note2-wpf控件.assets/image-20260714092841946.png)
+
+## 滑块的比较重要的事件是ValueChanged事件
+
+![image-20260714100659671](./note2-wpf控件.assets/image-20260714100659671.png)
+
+## 在后台代码这么写
+
+![image-20260714101000870](./note2-wpf控件.assets/image-20260714101000870.png)
+
+## 此时会有一个问题
+
+![image-20260714101030109](./note2-wpf控件.assets/image-20260714101030109.png)
+
+### 这是因为滑块在文本框创建之前就加载了
+
+## 解决办法就是保证文本框不为空，只需要添加一个if判断
+
+![image-20260714101236856](./note2-wpf控件.assets/image-20260714101236856.png)
+
+## 当然，要实现同样的效果，也可以只使用xaml来完成，只需要使用实现绑定
+
+![image-20260714105455009](./note2-wpf控件.assets/image-20260714105455009.png)
+
+## 效果
+
+![image-20260714105523818](./note2-wpf控件.assets/image-20260714105523818.png)
+
+![image-20260714105601145](./note2-wpf控件.assets/image-20260714105601145.png)
 
 
 
 # 11.日历
 
+## 注释调滑块的代码，然后我们来创建一个日历控件
 
+![image-20260717200914819](./note2-wpf控件.assets/image-20260717200914819.png)
+
+## 如果你需要拉伸日历，可以把它放到一个ViewBox里面
+
+![image-20260718111649690](./note2-wpf控件.assets/image-20260718111649690.png)
+
+### 当然ViewBox的拉伸模式还可以选择uniform，有时候这个选项更好
+
+![image-20260718112014123](./note2-wpf控件.assets/image-20260718112014123.png)
+
+## 那么如何获取我们选择的日期？我们需要先给日历控件添加一个名称，然后我们可以添加一个Label和一个TextBlock控件，然后给日历控件的SelectedDatesChanged事件添加处理代码
+
+![image-20260718112939910](./note2-wpf控件.assets/image-20260718112939910.png)
+
+![image-20260718113040359](./note2-wpf控件.assets/image-20260718113040359.png)
+
+## 效果
+
+![image-20260718113405171](./note2-wpf控件.assets/image-20260718113405171.png)
+
+
+
+![image-20260718113440072](./note2-wpf控件.assets/image-20260718113440072.png)
+
+## 可以通过DisplayMode来实战日历控件的显示模式有10年，月和年3种选项
+
+![image-20260718113754649](./note2-wpf控件.assets/image-20260718113754649.png)
+
+## 日历控件可以设置排除日期，设置后这个范围内的日期不可选择
+
+![image-20260718114032699](./note2-wpf控件.assets/image-20260718114032699.png)
+
+![image-20260718114236062](./note2-wpf控件.assets/image-20260718114236062.png)
 
 # 12.日历选择器
 
+## 还是这个项目，我们把日历控件的代码注释了，然后创建一个日期挑选器DataPicker
+
+![image-20260718114647114](./note2-wpf控件.assets/image-20260718114647114.png)
+
+## 运行程序，效果如下，你可以选择一个日期，此时日期选择器的文本框就会显示这个日期
+
+![image-20260718114854728](./note2-wpf控件.assets/image-20260718114854728.png)
 
 
-# 13.扩展器
+
+## 你也可以在日期选择器的文本框里面输入一个日期，日期选择器也会选中这个日期，比如我们输入2026/6/16，回车，然后打开日期选择器，效果如下
+
+![image-20260718115109780](./note2-wpf控件.assets/image-20260718115109780.png)
 
 
+
+## 我们可以设置日期选择器的默认选择日期，使用SelectedDate属性来设置，注意，格式是月/日/年，否则报错
+
+![image-20260718115500280](./note2-wpf控件.assets/image-20260718115500280.png)
+
+
+
+## 可以设置日期的格式，有Long和short，默认值是short
+
+![image-20260718115648134](./note2-wpf控件.assets/image-20260718115648134.png)
+
+## Long格式可以显示日期和星期几
+
+![image-20260718115809480](./note2-wpf控件.assets/image-20260718115809480.png)
+
+## 日期选择器有一个SelectedDateChanged事件
+
+![image-20260718120353139](./note2-wpf控件.assets/image-20260718120353139.png)
+
+## 然后我们可以添加一些代码
+
+![image-20260718120329513](./note2-wpf控件.assets/image-20260718120329513.png)
+
+## 效果
+
+![image-20260718120459251](./note2-wpf控件.assets/image-20260718120459251.png)
+
+## 和日历控件一样，日期选择器也可以排除某些日期，使得他们不能够被选中
+
+![image-20260718152538113](./note2-wpf控件.assets/image-20260718152538113.png)
+
+# 13.展开器expander
+
+## 把日期选择器的代码注释了，然后创建一个展开器Expander
+
+![image-20260718153014568](./note2-wpf控件.assets/image-20260718153014568.png)
+
+## 然后我们可以在展开器里面添加一些东西,比如一幅图片，一个日期选择器，一个文本块和一个按钮
+
+![image-20260718160605020](./note2-wpf控件.assets/image-20260718160605020.png)
+
+## 可以给展开器添加标题文本，只需要设置Header属性的值即可
+
+![image-20260718161150163](./note2-wpf控件.assets/image-20260718161150163.png)
+
+## 运行程序，效果如下
+
+![image-20260718161225379](./note2-wpf控件.assets/image-20260718161225379.png)
+
+
+
+![image-20260718161249442](./note2-wpf控件.assets/image-20260718161249442.png)
+
+![image-20260718161315394](./note2-wpf控件.assets/image-20260718161315394.png)
+
+
+
+## 注意：Header也可以作为一个并且来使用，里面可以放置任何内容
+
+![image-20260718162230890](./note2-wpf控件.assets/image-20260718162230890.png)
+
+## Expander有一个Expanded和一个Collapsed事件，当展开器被展开，就会触发Expanded事件，当展开器被折叠，触发Collapsed事件
+
+![image-20260718163049810](./note2-wpf控件.assets/image-20260718163049810.png)
+
+## 对应的后台代码如下
+
+![image-20260718163133317](./note2-wpf控件.assets/image-20260718163133317.png)
+
+## 效果
+
+![image-20260718163204080](./note2-wpf控件.assets/image-20260718163204080.png)
+
+![image-20260718163225267](./note2-wpf控件.assets/image-20260718163225267.png)
+
+
+
+![image-20260718163245648](./note2-wpf控件.assets/image-20260718163245648.png)
+
+
+
+![image-20260718163310266](./note2-wpf控件.assets/image-20260718163310266.png)
+
+# 注意：wpf大坑
+
+## wpf在滑块的valueChanged事件处理函数出现System.NullReferenceException:“未将对象引用设置到对象的实例。”
+
+在 WPF 中，滑块（`Slider`）的 `ValueChanged` 事件触发非常频繁（甚至在 UI 初始化加载时就会触发）。出现 `System.NullReferenceException` 错误，通常是因为事件处理函数中调用了未初始化的对象、空控件或空变量。 [[1](https://blog.csdn.net/Monkey_King_GL/article/details/125972092), [2](https://www.cnblogs.com/daran/p/14302650.html), [3](https://blog.csdn.net/wangjinyang_123/article/details/41411597)]
+
+以下是导致该问题的最常见原因及对应的排查与解决办法：
+
+1. 常见原因
+
+- **后台代码访问了尚未初始化的 UI 控件**：如果在 XAML 中，`Slider` 的定义在其他目标控件（如 `TextBlock`、`Label`）之前，或者在 `InitializeComponent()` 之前触发了事件，访问目标控件时会因未实例化而报错。
+- **未进行空值（Null）判断**：事件处理函数中直接调用了可能为 `null` 的对象属性或方法（例如未初始化的自定义类、数据库连接对象等）。
+- **数据绑定触发异常**：`Slider` 的值改变时常用来更新某个对象，如果绑定的目标对象实例未创建，赋值时就会引发异常。
+- **事件处理程序获取了错误的发送者**：事件处理时将 `sender` 强制转换为特定类型时失败，或者获取的数据上下文（`DataContext`）为 `null`。 [[1](https://comate.baidu.com/zh/page/qzblza2iu69), [2](https://www.cnblogs.com/liuzijin/p/17884122.html), [3](https://blog.csdn.net/Monkey_King_GL/article/details/125972092), [4](https://blog.csdn.net/wangjinyang_123/article/details/41411597), [5](https://www.cnblogs.com/daran/p/14302650.html)]
+- 核心排查与解决步骤
+
+第一步：调试定位（最快的方法）
+
+1. 在抛出异常的 `ValueChanged` 事件处理函数第一行设置**断点**。
+2. 运行程序，当触发滑动条改变时进入断点。
+3. 使用“单步执行”（F10/F11）往下走，观察哪一行代码使程序崩溃，并将鼠标悬停在变量上查看哪个对象显示为 `null`。
+
+第二步：添加防御性代码
+
+在代码中使用条件运算符 `?.` 或者判空语句来防止异常崩溃：
+
+csharp
+
+```wpf
+private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+{
+    // 1. 确保控件已经初始化完成（防范窗口加载时的误触发）
+    if (!this.IsLoaded) return;
+
+    // 2. 使用安全转换和空值判断
+    if (sender is Slider slider && myTargetTextBox != null)
+    {
+        // 确保你要赋值的目标对象不为空
+        myTargetTextBox.Text = slider.Value.ToString();
+    }
+}
+```
+
+## 注意：wpf控件的定义是由顺序的，先定义的控件不能够操作后定义的控件，会发生null异常，因为在先定义的控件的里面，后面的控件还可以完成初始化，此时使用后面的控件就会引发空异常，当然你非要操作，也可以，必须先用if语句判断这个对象是否为空，如果不为空才操作它就不会有问题
 
 
 
