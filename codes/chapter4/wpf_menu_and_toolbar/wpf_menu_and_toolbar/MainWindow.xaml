@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:wpf_menu_and_toolbar"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
+    <DockPanel LastChildFill="False">
         <!--菜单-->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -62,5 +62,15 @@
                 </ContextMenu>
             </TextBox.ContextMenu>
         </TextBox>
+        <!--状态栏-->
+        <Button x:Name="BtnIncrease" DockPanel.Dock="Top" Click="BtnIncrease_Click">增加10</Button>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="stuLabel">
+                Loading
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar x:Name="progBar" Width="100" Height="15" Value="10"></ProgressBar>
+            </StatusBarItem>
+        </StatusBar>
     </DockPanel>
 </Window>

@@ -79,5 +79,18 @@ namespace wpf_menu_and_toolbar
         {
             tb.FontStyle = FontStyles.Normal;
         }
+
+        private void BtnIncrease_Click(object sender, RoutedEventArgs e)
+        {
+           
+            if(progBar.Value >= 100)
+            {
+                stuLabel.Content = "Done...";
+            } 
+            else
+            {
+                progBar.Value += 10;
+            }
+        }
     }
 }
