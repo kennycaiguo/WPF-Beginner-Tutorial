@@ -44,7 +44,23 @@
             </ToolBar>
         </ToolBarTray>
         <TextBox x:Name="tb">
-            
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Font Style">
+                        <MenuItem x:Name="MenuBold" 
+                                  Header="Bold" 
+                                  IsCheckable="True"
+                                  Checked="MenuBold_Checked"
+                                  Unchecked="MenuBold_Unchecked"
+                                  ></MenuItem>
+                        <MenuItem x:Name="MenuItalic" Header="Italic" 
+                                  IsCheckable="True"
+                                  Checked="MenuItalic_Checked"
+                                  Unchecked="MenuItalic_Unchecked"></MenuItem>
+                    </MenuItem>
+                    
+                </ContextMenu>
+            </TextBox.ContextMenu>
         </TextBox>
     </DockPanel>
 </Window>

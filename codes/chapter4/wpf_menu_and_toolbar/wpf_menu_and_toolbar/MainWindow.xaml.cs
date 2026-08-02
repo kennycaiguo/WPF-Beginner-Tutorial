@@ -52,5 +52,32 @@ namespace wpf_menu_and_toolbar
                 }
             }
         }
+
+      
+
+        //private void MenuItalic_Click(object sender, RoutedEventArgs e)
+        //{
+        //    tb.FontStyle = FontStyles.Italic;
+        //}
+
+        private void MenuBold_Checked(object sender, RoutedEventArgs e)
+        {
+            tb.FontWeight = FontWeights.Bold; //设置粗体
+        }
+
+        private void MenuBold_Unchecked(object sender, RoutedEventArgs e)
+        {
+            tb.FontWeight = FontWeights.Normal;
+        }
+
+        private void MenuItalic_Checked(object sender, RoutedEventArgs e)
+        {
+            tb.FontStyle = FontStyles.Italic;
+        }
+
+        private void MenuItalic_Unchecked(object sender, RoutedEventArgs e)
+        {
+            tb.FontStyle = FontStyles.Normal;
+        }
     }
 }
