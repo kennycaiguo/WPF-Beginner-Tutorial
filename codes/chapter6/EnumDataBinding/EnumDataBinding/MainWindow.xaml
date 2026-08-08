@@ -1,0 +1,32 @@
+﻿<Window x:Class="EnumDataBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnumDataBinding"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Window.Resources>
+        <ObjectDataProvider x:Key="odpTaste" ObjectType="{x:Type sys:Enum}" MethodName="GetNames">
+            <!--数据提供程序会调用我们指定的方法然后把这个Taste枚举作为参数如：GetNames(Taste)-->
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:Taste" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    
+    <StackPanel>
+        <StackPanel.Resources>
+            <ObjectDataProvider x:Key="odpLangs" ObjectType="{x:Type sys:Enum}" MethodName="GetNames">
+                <!--数据提供程序会调用我们指定的方法然后把这个Langs枚举作为参数如：GetNames(Langs)-->
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="local:Langs" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+        </StackPanel.Resources>
+        <ComboBox FontSize="30" ItemsSource="{Binding Source={StaticResource odpTaste}}"></ComboBox>
+        <ComboBox FontSize="30" ItemsSource="{Binding Source={StaticResource odpLangs}}"></ComboBox>
+    </StackPanel>
+</Window>
