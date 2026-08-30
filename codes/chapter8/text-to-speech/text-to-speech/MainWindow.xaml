@@ -1,0 +1,17 @@
+﻿<Window x:Class="text_to_speech.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:text_to_speech"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Enter Source Text:" />
+            <TextBox x:Name="tbMain" Height="30" FontSize="18" Width="120" BorderThickness="0"/>
+        </StackPanel>
+        
+        <Button x:Name="btnSp" Content="Speech" Click="btnSp_Click" />
+    </StackPanel>
+</Window>

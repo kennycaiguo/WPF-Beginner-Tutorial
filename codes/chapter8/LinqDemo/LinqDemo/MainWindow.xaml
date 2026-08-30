@@ -1,0 +1,30 @@
+﻿<Window x:Class="LinqDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LinqDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="400">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="listDmo" Click="listDmo_Click" Content="Linq List Demo" />
+            <Border Margin="2 0 2 0"></Border>
+            <Button x:Name="listDmo2" Click="listDmo2_Click" Content="Linq List Demo2" />
+        </StackPanel>
+        <Border Margin="0 2 0 2"></Border>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="oddBtn" Click="oddBtn_Click" Content="Filter Odd" />
+            <Border Margin="2 0 2 0"></Border>
+            <Button x:Name="evenBtn" Click="evenBtn_Click" Content="Filter Event" />
+            <Border Margin="2 0 2 0"></Border>
+            <Button x:Name="revmBtn" Click="revmBtn_Click" Content="Remove Filter" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnAsc" Click="btnAsc_Click" Content="Sort Ascending" />
+            <Border Margin="2 0 2 0"></Border>
+            <Button x:Name="btnDsc" Click="btnDsc_Click" Content="Sort Descending" />
+        </StackPanel>
+            <TextBlock x:Name="tbDisp" FontSize="18" />
+    </StackPanel>
+</Window>
