@@ -40,25 +40,290 @@ WPF 中的 **窗口（Window）**、**页面（Page）** 和 **用户控件（Us
 
 ## 注意： 在应该用户控件里面可以包含一个或者多个其他用户控件。这样做是有意义的。可以构建更加强大的用户控件。
 
+## 案例
+
+![image-20260829201315561](./note09-自定义用户控件.assets/image-20260829201315561.png)
+
+![image-20260829201402543](./note09-自定义用户控件.assets/image-20260829201402543.png)
+
+![image-20260829201458685](./note09-自定义用户控件.assets/image-20260829201458685.png)
+
+
+
 
 
 # 3.创建第一个用户控件
 
+## 1.新建一个项目，起名：InstaUserControlDemo
+
+![image-20260905111123347](./note09-自定义用户控件.assets/image-20260905111123347.png)
 
 
-# 4.MVC
+
+
+
+## 2.给项目添加一个Icons文件夹，把一些图片放进来
+
+![image-20260905115746856](./note09-自定义用户控件.assets/image-20260905115746856.png)
+
+
+
+## 3.给项目添加一个用户控件，起名：PostControl.xaml,在Grid里面添加一个StackPanel面板，然后在它里面添加点赞，评论和发送图标，在StackPanel下面添加一个bookmark图标
+
+![image-20260905122856174](./note09-自定义用户控件.assets/image-20260905122856174.png)
+
+## 4.进入PostControl的后台文件，创建一个PostLiked属性，用来保存帖子是否被点赞
+
+![image-20260905122509808](./note09-自定义用户控件.assets/image-20260905122509808.png)
+
+## 5.然后我们创建一个方法来将一个帖子标记为已经点赞
+
+![image-20260905124152668](./note09-自定义用户控件.assets/image-20260905124152668.png)
+
+## 6.然后我们需要创建一个取消点赞的方法，实现类似的逻辑，只是图片不一样
+
+![image-20260905124449823](./note09-自定义用户控件.assets/image-20260905124449823.png)
+
+
+
+## 7.然后我们来实现Heart_MouseDown方法的代码，非常简单，当你点击一些这个图片，如果它之前没有被点赞，就执行点赞方法，如果它已经被点赞，就这些取消点赞的方法
+
+![image-20260905124948044](./note09-自定义用户控件.assets/image-20260905124948044.png)
+
+## 8.进入MainWindow.xaml,在里面调用我们的PostControl控件
+
+![image-20260905125232168](./note09-自定义用户控件.assets/image-20260905125232168.png)
+
+## 9.运行程序，界面如下，此时非常丑，但是没有关系我们只是想测试一下我们的代码逻辑是否工作正常
+
+![image-20260905125350965](./note09-自定义用户控件.assets/image-20260905125350965.png)
+
+## 10.点击爱心图片，发现它变红了，说明LikePost方法工作正常
+
+![image-20260905125501748](./note09-自定义用户控件.assets/image-20260905125501748.png)
+
+## 11.再点击一下爱心，它又把握白色，说明UnLikePost方法工作也正常
+
+![image-20260905125604567](./note09-自定义用户控件.assets/image-20260905125604567.png)
+
+## 12.当然我们可以把控件的高度改为40，此时效果如下
+
+![image-20260905132028629](./note09-自定义用户控件.assets/image-20260905132028629.png)
+
+
+
+# 4.MVC，不太好用，现在流行mvvm
+
+## MVC架构图解
+
+![image-20260905135527342](./note09-自定义用户控件.assets/image-20260905135527342.png)
+
+## MVC核心组件与职责
+
+### Model（模型）
+
+**职责**：处理业务逻辑和数据操作（如数据库访问、计算规则）。
+**示例**：
+
+```
+csharp复制public class UserModel {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public UserModel GetUserById(int id) {
+        return new UserModel { Id = id, Name = "张三" }; // 模拟数据获取
+    }
+}
+```
+
+### View（视图）
+
+**职责**：展示数据（UI界面），接收用户输入，依赖Model但不含业务逻辑。
+**Web示例（Razor视图）**：
+
+```html
+@model UserModel
+<h1>用户详情</h1>
+<p>ID：@Model.Id</p>
+<p>姓名：@Model.Name</p>
+```
+
+### Controller（控制器）
+
+**职责**：处理用户请求，协调Model和View（如调用Model方法、传递数据给View）。
+**示例**：
+
+```
+public class UserController : Controller {
+    public ActionResult Detail(int id) {
+        var userModel = new UserModel();
+        var user = userModel.GetUserById(id);
+        return View(user); // 传递数据给View
+    }
+}
+```
+
+## MVC工作流程
+
+1. **用户操作**（如点击按钮）触发请求。
+2. **Controller接收请求**，调用Model处理数据。
+3. **Model返回数据**给Controller。
+4. **Controller传递数据给View**，View渲染并展示结果。
+
+**特点**：View和Controller双向交互，Controller直接控制View更新。
+
+## MVC的变体与对比
+
+### MVP（Model-View-Presenter）
+
+- **改进点**：解耦View和Model，通过Presenter中间层处理逻辑。
+- **适用场景**：WinForm/WPF桌面应用，测试性优于MVC。
+- **缺点**：Presenter可能臃肿（需手动更新View接口）。
+
+### MVVM（Model-View-ViewModel）
+
+- **核心**：数据绑定（如WPF的`INotifyPropertyChanged`），消除手动更新代码。
+- **适用场景**：现代C#界面框架（WPF/MAUI/Blazor），解耦和可维护性最优。
+
+**对比表**：
+
+| 特性         | MVC                    | MVP                   | MVVM                   |
+| :----------- | :--------------------- | :-------------------- | :--------------------- |
+| **解耦方式** | View-Controller耦合    | View-Presenter接口    | View-ViewModel数据绑定 |
+| **交互方式** | Controller直接更新View | Presenter调用View接口 | 数据绑定自动更新       |
+| **测试性**   | 中等                   | 较高                  | 最高                   |
+| **适用框架** | ASP.NET MVC            | WinForm（早期）       | WPF/MAUI/Blazor        |
+
+## 最佳实践与注意事项
+
+1. **职责分离**
+   - Model不依赖View或Controller，确保业务逻辑可复用。
+   - Controller仅处理请求协调，避免包含复杂逻辑（可抽离到Service层）。
+2. **依赖注入（DI）**
+   - 使用`IServiceCollection`注册服务（如`services.AddScoped<IUserService, UserService>()`），降低耦合度。
+3. **异步处理**
+   - 在Controller中使用`async/await`提升性能（如`public async Task<ActionResult> DetailAsync(int id)`）。
+4. **避免过度分层**
+   - 小型项目可简化设计（如合并Service层与Model）。
+
+## 总结
+
+- **MVC**：适合简单Web应用（如ASP.NET MVC），开发速度快但View-Controller耦合略高。
+- **MVP**：适合早期桌面应用，通过Presenter解耦View和Model。
+- **MVVM**：现代C#界面开发首选（如WPF），数据驱动设计，解耦和可维护性最优。
+
+**选择原则**：
+
+- 简单Web项目用MVC；
+- 现代桌面/跨平台应用用MVVM；
+- MVP仅作为过渡或老项目维护场景使用。
+
+通过合理应用MVC模式，可显著提升代码的可读性、可测试性和可扩展性。
 
 
 
 # 5.创建PostLikedBy用户控件
 
+## 项目演练，还是上面的项目，我们来实现统计功能
+
+![image-20260905161344987](./note09-自定义用户控件.assets/image-20260905161344987.png)
+
+
+
+## 1.给项目新建一个新的用户控件起名：PostLikedBy
+
+![image-20260905161636502](./note09-自定义用户控件.assets/image-20260905161636502.png)
+
+
+
+## 2.把Grid元素改为StackPanel，然后用TextBlock来显示对应的事件，由于我们这里没有使用数据库，暂时是硬编码，等到我们使用数据库，这些数据都需要从数据库里面获取
+
+![image-20260905165001340](./note09-自定义用户控件.assets/image-20260905165001340.png)
+
+## 3.然后我们需要把这个控件添加到主窗口，并且放在上一节课的控件的下面
+
+![image-20260905165110492](./note09-自定义用户控件.assets/image-20260905165110492.png)
+
 
 
 # 6.重构和使用父控件
 
+## 1.还是上面的项目，我们给项目创建一个UserControls文件夹，把我们的用户控件统统移动到里面
+
+![image-20260905170229070](./note09-自定义用户控件.assets/image-20260905170229070.png)
+
+
+
+## 2.然后我们给UserControls文件夹添加一个PicturePost用户控件
+
+![image-20260905170449842](./note09-自定义用户控件.assets/image-20260905170449842.png)
+
+
+
+## 3.然后我们把前面两个用户控件都添加到PicturePost用户控件里面作为它的子控件，然后把MainWindow里面的那两个控件引用删除。然后我们需要先创建一个命名空间映射uc，指向UserControls文件夹，然后就可以引用PicturePost用户控件了
+
+![image-20260905171548578](./note09-自定义用户控件.assets/image-20260905171548578.png)
+
+## 4.那么，问题来了，在PicturePost用户控件里面如何引用PostControl控件和PostLikedBy控件？原来也是通过local标签来使用，注意，需要设置高度
+
+![image-20260905171950743](./note09-自定义用户控件.assets/image-20260905171950743.png)
+
+## 5.然后我们个堆叠面板添加一个图片，为了能够使得图片支持双击，需要把图片放到一个ContentControl容器里面，这是因为图片没有鼠标双击事件，而内容控件有鼠标双击事件，注意，这里的图片有点大，我们需要把它的高度设置小一点，否则看不到下面两个控件(注意，老师的有些写法已经过时，在vs2022里面不工作。)
+
+![image-20260905173752820](./note09-自定义用户控件.assets/image-20260905173752820.png)
+
+## 6.也可以不限制图片的高度，然后我们回到MainWindow.xaml中，修改主窗口的高度为800，宽度为450px
+
+![image-20260905174231714](./note09-自定义用户控件.assets/image-20260905174231714.png)
+
+## 7.运行程序，效果如下
+
+<img src="./note09-自定义用户控件.assets/image-20260905174340396.png" alt="image-20260905174340396" style="zoom:50%;" />
+
+
+
+
+
+## 8.然后我们给内容控件的鼠标双击事件处理程序添加处理代码，我们在这里实现的功能是如果没有点赞，双击图片会触发点赞操作，如果点赞了，双击图片会触发取消点赞操作
+
+![image-20260905182556097](./note09-自定义用户控件.assets/image-20260905182556097.png)
+
+## 9.运行程序效果如下
+
+![image-20260905182727455](./note09-自定义用户控件.assets/image-20260905182727455.png)
+
+![image-20260905182823688](./note09-自定义用户控件.assets/image-20260905182823688.png)
+
+### 当然也可以点击爱心触发点赞，双击图片取消点赞或者双击图片触发点赞，点击爱心触发取消点赞。。。
+
+## 10.然后我们给项目添加一个Models文件夹，然后在Models文件夹里面创建一个类，起名：PicturePostModel
+
+![image-20260905183227445](./note09-自定义用户控件.assets/image-20260905183227445.png)
+
+
+
+## 11.我们给这个类添加一个属性，是BitmapImage类的变量。
+
+![image-20260905183505068](./note09-自定义用户控件.assets/image-20260905183505068.png)
+
 
 
 # 7.添加视频模型并创建视频帖子
+
+## 这里有一个网站可以下载小视频：https://www.pexels.com/search/videos/little-girl/
+
+## 此外，还可以在pinterest网站查找视频，然后点击分享-复制链接，粘贴到这个网站就可以解析下载： https://www.savepin.onl/
+
+## 1.还是上面的项目，我们给项目新建一个Videos文件夹，把一个跳舞的开通视频粘贴过来
+
+![image-20260905203013284](./note09-自定义用户控件.assets/image-20260905203013284.png)
+
+
+
+
+
+
+
+
 
 
 
