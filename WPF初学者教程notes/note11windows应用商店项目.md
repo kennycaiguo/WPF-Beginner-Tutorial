@@ -4,6 +4,30 @@
 
 # 2.设置并显示应用1
 
+## 1.新建一个项目，起名：windowstoreclone
+
+![image-20260926094336729](./note11windows应用商店项目.assets/image-20260926094336729.png)
+
+
+
+## 2.给项目条件应该Images文件夹，在里面放在70张左右的图片
+
+![image-20260927105641606](./note11windows应用商店项目.assets/image-20260927105641606.png)
+
+![image-20260927120921491](./note11windows应用商店项目.assets/image-20260927120921491.png)
+
+
+
+
+
+### 注意：这里有应该图片的下载链接： https://www.flaticon.com/packs/home-screen-apps-21
+
+
+
+
+
+
+
 
 
 # 3.设置并显示应用2
@@ -135,6 +159,8 @@
 
 
 # 35.附加内容，为你的MahApps添加主题选择器
+
+
 
 
 
