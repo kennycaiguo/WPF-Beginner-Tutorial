@@ -156,15 +156,93 @@
 
 # 5.在ScrollView中显示多个项目2-通过点击滚动
 
+## 5.1这一节课，我们来学习实现点击左边的按钮，app视图往左滚动，点击右边的按钮，app视图往右滚动，先来实现左边按钮的功能，其实右边按钮的功能 是类似的，只是使用+来代替-。我们把他们的功能都实现，如下
+
+![image-20261004122338926](./note11windows应用商店项目.assets/image-20261004122338926.png)
+
+### 注意，其实也不需要一次移动4个应用，可以设置它一次移动1个，可以根据需要自己来设置
+
 
 
 # 6.TopApps用户控件
+
+## 本节课，我们来构建一个类似这样的UI界面
+
+![image-20261004122826139](./note11windows应用商店项目.assets/image-20261004122826139.png)
+
+##  1.我们需要准备一些图片，放到项目的Imags/TopAppIcons/ 里面
+
+![image-20261004141318242](./note11windows应用商店项目.assets/image-20261004141318242.png)
+
+
+
+## 2.在UserControls文件夹里面新建一个用户控件，起名TopApps
+
+![image-20261004141531522](./note11windows应用商店项目.assets/image-20261004141531522.png)
+
+
+
+## 2.进入TopApps.xaml文件，把Grid划分为3行4列
+
+![image-20261004141932891](./note11windows应用商店项目.assets/image-20261004141932891.png)
+
+## 3.然后我们添加一幅海滩图片，占据2行3列
+
+![image-20261004142627400](./note11windows应用商店项目.assets/image-20261004142627400.png)
+
+## 4.然后我们在放入一张马戏团的图片在右边的顶部
+
+![image-20261004143401180](./note11windows应用商店项目.assets/image-20261004143401180.png)
+
+## 5.把最后一列的使用图片都添加上，设置都是差不多的，就行和列和图片名字需要修改
+
+![image-20261004144200290](./note11windows应用商店项目.assets/image-20261004144200290.png)
+
+## 6.我们在在下面的一行创建一个Grid,他的跨度是2列，然后给它划分2行2列
+
+![image-20261004145102291](./note11windows应用商店项目.assets/image-20261004145102291.png)
+
+## 7.然后给BottomGrid的每一个单元格都创建一个按钮
+
+![image-20261004150224425](./note11windows应用商店项目.assets/image-20261004150224425.png)
+
+## 8.然后我们给根Grid的最后一个空位置添加一幅图片
+
+![image-20261004150404814](./note11windows应用商店项目.assets/image-20261004150404814.png)
+
+## 9.我们可以在MainWindow.xaml中使用它
+
+![image-20261004150739266](./note11windows应用商店项目.assets/image-20261004150739266.png)
+
+![image-20261004150804964](./note11windows应用商店项目.assets/image-20261004150804964.png)
+
+## 至此，TopApps用户界面就设计好了。
 
 
 
 # 7.ProductivityTopApps用户控件
 
+## 这一节课，我们来创建另外一个用户控件界面，如图
 
+![image-20261004151001173](./note11windows应用商店项目.assets/image-20261004151001173.png)
+
+## 7.1 把上面这些图片放到一个ProductivityAppIcons文件夹里面然后拖放进项目的Iamges中
+
+![image-20261004153745908](./note11windows应用商店项目.assets/image-20261004153745908.png)
+
+## 7.2 然后我们新建一个ProductivityTopApps用户控件，给Grid划分3行列
+
+![image-20261004154148660](./note11windows应用商店项目.assets/image-20261004154148660.png)
+
+## 7.3 然后我们把ProductivityAppIcons文件夹里面里面的所有图片添加进来，前面2张图片占据2行2列，其他图片没有跨度
+
+![image-20261004161243879](./note11windows应用商店项目.assets/image-20261004161243879.png)
+
+## 7.4在MainWindow.xaml文件里面使用这个用户控件，运行程序，效果如下
+
+![image-20261004161701457](./note11windows应用商店项目.assets/image-20261004161701457.png)
+
+![image-20261004161733995](./note11windows应用商店项目.assets/image-20261004161733995.png)
 
 # 8.创建页面并将我们的用户控件添加到其中
 

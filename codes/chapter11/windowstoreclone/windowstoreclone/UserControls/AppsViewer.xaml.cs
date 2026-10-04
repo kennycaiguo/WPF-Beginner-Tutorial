@@ -38,12 +38,16 @@ namespace windowstoreclone.UserControls
 
         private void LeftBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            //计算需要滚动的距离，就是一个应用程序的宽度+左右边距（因为这里设置的左右边距一样，所以使用2*边距）
+            int appWidth = (int)PresentedApps.First().ActualWidth + (int)(2 * PresentedApps.First().Margin.Left);
+            //左移4个应用程序的宽度（包含左右边距）
+            AppsScrollViewer.ScrollToHorizontalOffset(AppsScrollViewer.HorizontalOffset - 4 * appWidth);
         }
 
         private void RightBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            int appWidth = (int)PresentedApps.First().ActualWidth + (int)(2 * PresentedApps.First().Margin.Left);
+            AppsScrollViewer.ScrollToHorizontalOffset(AppsScrollViewer.HorizontalOffset + 4 * appWidth);
         }
     }
 }
